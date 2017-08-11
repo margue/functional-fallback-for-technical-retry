@@ -10,17 +10,16 @@ import org.camunda.bpm.engine.impl.incident.IncidentContext;
 import org.camunda.bpm.engine.impl.incident.IncidentHandler;
 
 @Slf4j
-public class CustomIncidentHandler implements IncidentHandler {
+public class CustomIncidentHandler extends DefaultIncidentHandler {
 
-    @Override
-    public String getIncidentHandlerType() {
-        log.info("-------------------------------------> getIncidentHandlerType................................");
-        return "failedJob";
+    CustomIncidentHandler() {
+        super("failedJob");
     }
 
     @Override
     public void handleIncident(IncidentContext context, String message) {
         log.info("-------------------------------------> handling Incident................................");
+        createIncident(context, message);
 
         String executionId = context.getExecutionId();
 
@@ -39,10 +38,12 @@ public class CustomIncidentHandler implements IncidentHandler {
     @Override
     public void resolveIncident(IncidentContext context) {
         log.info("-------------------------------------> resolve Incident................................");
+        removeIncident(context, true);
     }
 
     @Override
     public void deleteIncident(IncidentContext context) {
         log.info("-------------------------------------> delete Incident................................");
+        removeIncident(context, false);
     }
 }
