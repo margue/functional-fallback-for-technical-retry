@@ -1,0 +1,21 @@
+camunda:
+  bpm:
+    filter:
+      create: show-all-tasks
+    admin-user:
+      id: demo
+      password: demo
+
+spring:
+  h2:
+    console:
+      enabled: true
+
+logging:
+  level:
+    org:
+      camunda:
+        bpm:
+          engine:
+            context: INFO
+            jobexecutor: INFO
