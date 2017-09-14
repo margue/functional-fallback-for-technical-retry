@@ -1,5 +1,6 @@
 package de.holisticon.holunda.functionalfallbackfortechnicalretry.process.incidenthandler;
 
+import com.sun.tools.doclint.Entity;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.camunda.bpm.engine.ProcessEngine;
@@ -38,12 +39,12 @@ public class CustomIncidentHandler extends DefaultIncidentHandler {
     @Override
     public void resolveIncident(IncidentContext context) {
         log.info("-------------------------------------> resolve Incident................................");
-        removeIncident(context, true);
+        super.resolveIncident(context);
     }
 
     @Override
     public void deleteIncident(IncidentContext context) {
         log.info("-------------------------------------> delete Incident................................");
-        removeIncident(context, false);
+        super.deleteIncident(context);
     }
 }
