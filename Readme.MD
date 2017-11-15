@@ -1,19 +1,5 @@
 # Functional fallback for a technical retry
 
-## Mission
-
-![Componenet overview](./doc/img/overview.png "Componenet overview")
-
-* From your process, call a synchronous WebService that is quite "unstable".
-* As your customer is waiting for your processing result, purely waiting for the service to come up again is no option.
-* In case the service is unavailable, it is acceptable to retry the call two times within ten seconds.
-* There is a functional fallback, f.e. generata a pdf and sent it to the customer via mail, that should be triggered 
-if all automatic retries failed.
-* The functional fallback should be executed exactly once.
-* The functional fallback should be visible in the process diagramm.
-* The actual service call should be caught up as soon as the service becomes available again without retriggering the
- fallback once more (s. above).
-
 ## Proposed solution
 
 ![Process model](./src/main/resources/bpmn/RetryHandlingProcess.png "Process model")
